@@ -1,0 +1,938 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DEA PARFUM - Luxury Fragrance Store</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Playfair Display', 'Georgia', serif;
+            background: linear-gradient(135deg, #f5f0fa 0%, #e8dff5 100%);
+            color: #2d1b3d;
+            min-height: 100vh;
+        }
+
+        .header {
+            background: linear-gradient(135deg, #6b46c1 0%, #553c9a 100%);
+            padding: 20px 0;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 4px 30px rgba(107, 70, 193, 0.4);
+        }
+
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 32px;
+            font-weight: bold;
+            color: white;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            letter-spacing: 2px;
+        }
+
+        .cart-btn {
+            background: white;
+            color: #6b46c1;
+            border: none;
+            padding: 12px 28px;
+            border-radius: 30px;
+            cursor: pointer;
+            font-weight: 600;
+            font-size: 16px;
+            transition: all 0.3s;
+            position: relative;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        .cart-btn:hover {
+            background: #f5f0fa;
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(255, 255, 255, 0.3);
+        }
+
+        .cart-count {
+            position: absolute;
+            top: -8px;
+            right: -8px;
+            background: #d946ef;
+            color: white;
+            border-radius: 50%;
+            width: 26px;
+            height: 26px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 12px;
+            font-weight: bold;
+            box-shadow: 0 2px 8px rgba(217, 70, 239, 0.5);
+        }
+
+        .hero {
+            text-align: center;
+            padding: 80px 20px;
+            background: linear-gradient(135deg, rgba(107, 70, 193, 0.1), rgba(217, 70, 239, 0.1));
+        }
+
+        .hero h1 {
+            font-size: 56px;
+            margin-bottom: 20px;
+            color: #6b46c1;
+            text-shadow: 2px 2px 4px rgba(107, 70, 193, 0.2);
+            font-weight: 700;
+            letter-spacing: 1px;
+        }
+
+        .hero p {
+            font-size: 22px;
+            color: #7c3aed;
+            font-style: italic;
+            font-family: 'Georgia', serif;
+        }
+
+        .about-section {
+            background: white;
+            border-radius: 25px;
+            padding: 50px;
+            margin-bottom: 50px;
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.08);
+            border: 1px solid rgba(107, 70, 193, 0.1);
+        }
+
+        .about-section h2 {
+            color: #6b46c1;
+            font-size: 38px;
+            margin-bottom: 25px;
+            text-align: center;
+            font-weight: 700;
+        }
+
+        .about-section p {
+            font-size: 17px;
+            line-height: 1.9;
+            color: #4a4a4a;
+            margin-bottom: 18px;
+            text-align: justify;
+            font-family: 'Georgia', serif;
+        }
+
+        .contact-info {
+            margin-top: 50px;
+            padding-top: 40px;
+            border-top: 2px solid #f5f0fa;
+        }
+
+        .contact-info h3 {
+            color: #6b46c1;
+            font-size: 28px;
+            margin-bottom: 30px;
+            text-align: center;
+            font-weight: 700;
+        }
+
+        .contact-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+            gap: 25px;
+            margin-bottom: 35px;
+        }
+
+        .contact-item {
+            display: flex;
+            gap: 18px;
+            padding: 25px;
+            background: linear-gradient(135deg, #f5f0fa, #faf5ff);
+            border-radius: 18px;
+            transition: all 0.3s;
+            border: 1px solid rgba(107, 70, 193, 0.1);
+        }
+
+        .contact-item:hover {
+            background: linear-gradient(135deg, #e8dff5, #f5f0fa);
+            transform: translateY(-5px);
+            box-shadow: 0 8px 25px rgba(107, 70, 193, 0.15);
+        }
+
+        .contact-icon {
+            font-size: 36px;
+            flex-shrink: 0;
+        }
+
+        .contact-details strong {
+            display: block;
+            color: #6b46c1;
+            font-size: 17px;
+            margin-bottom: 10px;
+            font-weight: 600;
+        }
+
+        .contact-details p {
+            margin: 0;
+            color: #666;
+            font-size: 15px;
+            line-height: 1.7;
+            text-align: left;
+            font-family: 'Segoe UI', sans-serif;
+        }
+
+        .products-title {
+            color: #6b46c1;
+            font-size: 38px;
+            text-align: center;
+            margin-bottom: 40px;
+            font-weight: 700;
+            letter-spacing: 1px;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 50px 20px;
+        }
+
+        .products-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 35px;
+            margin-top: 40px;
+        }
+
+        .product-card {
+            background: white;
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 10px 35px rgba(107, 70, 193, 0.15);
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            cursor: pointer;
+            border: 1px solid rgba(107, 70, 193, 0.1);
+        }
+
+        .product-card:hover {
+            transform: translateY(-12px) scale(1.02);
+            box-shadow: 0 20px 50px rgba(107, 70, 193, 0.25);
+        }
+
+        .product-image {
+            width: 100%;
+            height: 280px;
+            background: linear-gradient(135deg, #a78bfa, #c084fc);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 80px;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .product-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            position: absolute;
+            top: 0;
+            left: 0;
+        }
+
+        .product-image .emoji-fallback {
+            position: relative;
+            z-index: 1;
+        }
+
+        .product-info {
+            padding: 25px;
+        }
+
+        .product-category {
+            font-size: 12px;
+            color: #9333ea;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            margin-bottom: 8px;
+            font-weight: 600;
+        }
+
+        .product-name {
+            font-size: 24px;
+            font-weight: 700;
+            color: #6b46c1;
+            margin-bottom: 12px;
+            letter-spacing: 0.5px;
+        }
+
+        .product-desc {
+            color: #666;
+            font-size: 14px;
+            margin-bottom: 18px;
+            line-height: 1.6;
+            font-family: 'Segoe UI', sans-serif;
+        }
+
+        .product-price {
+            font-size: 26px;
+            font-weight: 700;
+            color: #9333ea;
+            margin-bottom: 18px;
+        }
+
+        .add-to-cart {
+            width: 100%;
+            background: linear-gradient(135deg, #8b5cf6, #7c3aed);
+            color: white;
+            border: none;
+            padding: 14px;
+            border-radius: 12px;
+            cursor: pointer;
+            font-weight: 600;
+            font-size: 16px;
+            transition: all 0.3s;
+            box-shadow: 0 4px 15px rgba(124, 58, 237, 0.3);
+        }
+
+        .add-to-cart:hover {
+            background: linear-gradient(135deg, #7c3aed, #6d28d9);
+            transform: scale(1.03);
+            box-shadow: 0 6px 20px rgba(124, 58, 237, 0.4);
+        }
+
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(45, 27, 61, 0.85);
+            z-index: 2000;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+            backdrop-filter: blur(5px);
+        }
+
+        .modal.active {
+            display: flex;
+        }
+
+        .modal-content {
+            background: white;
+            border-radius: 25px;
+            max-width: 650px;
+            width: 100%;
+            max-height: 90vh;
+            overflow-y: auto;
+            position: relative;
+            animation: slideIn 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+        }
+
+        @keyframes slideIn {
+            from {
+                transform: translateY(-50px) scale(0.9);
+                opacity: 0;
+            }
+            to {
+                transform: translateY(0) scale(1);
+                opacity: 1;
+            }
+        }
+
+        .modal-header {
+            background: linear-gradient(135deg, #6b46c1, #7c3aed);
+            color: white;
+            padding: 25px;
+            font-size: 26px;
+            font-weight: 700;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            letter-spacing: 1px;
+        }
+
+        .close-btn {
+            background: rgba(255, 255, 255, 0.2);
+            border: none;
+            color: white;
+            font-size: 30px;
+            cursor: pointer;
+            width: 40px;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+            transition: all 0.3s;
+        }
+
+        .close-btn:hover {
+            background: rgba(255, 255, 255, 0.3);
+            transform: rotate(90deg);
+        }
+
+        .modal-body {
+            padding: 25px;
+        }
+
+        .cart-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px;
+            border-bottom: 1px solid #f5f0fa;
+            gap: 20px;
+            transition: all 0.3s;
+        }
+
+        .cart-item:hover {
+            background: #faf5ff;
+        }
+
+        .cart-item-info {
+            flex: 1;
+        }
+
+        .cart-item-name {
+            font-weight: 700;
+            color: #6b46c1;
+            margin-bottom: 6px;
+            font-size: 16px;
+        }
+
+        .cart-item-price {
+            color: #9333ea;
+            font-weight: 600;
+            font-size: 15px;
+        }
+
+        .quantity-controls {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .qty-btn {
+            background: linear-gradient(135deg, #8b5cf6, #7c3aed);
+            color: white;
+            border: none;
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            cursor: pointer;
+            font-weight: bold;
+            transition: all 0.3s;
+            box-shadow: 0 2px 8px rgba(124, 58, 237, 0.3);
+        }
+
+        .qty-btn:hover {
+            background: linear-gradient(135deg, #7c3aed, #6d28d9);
+            transform: scale(1.1);
+        }
+
+        .remove-btn {
+            background: #ef4444;
+            color: white;
+            border: none;
+            padding: 8px 16px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 13px;
+            transition: all 0.3s;
+            font-weight: 600;
+        }
+
+        .remove-btn:hover {
+            background: #dc2626;
+            transform: scale(1.05);
+        }
+
+        .cart-total {
+            padding: 25px;
+            border-top: 2px solid #e8dff5;
+            margin-top: 20px;
+            background: linear-gradient(135deg, #faf5ff, #f5f0fa);
+        }
+
+        .total-row {
+            display: flex;
+            justify-content: space-between;
+            font-size: 26px;
+            font-weight: 700;
+            color: #6b46c1;
+            margin-bottom: 25px;
+        }
+
+        .checkout-btn {
+            width: 100%;
+            background: linear-gradient(135deg, #10b981, #059669);
+            color: white;
+            border: none;
+            padding: 16px;
+            border-radius: 12px;
+            cursor: pointer;
+            font-weight: 700;
+            font-size: 18px;
+            transition: all 0.3s;
+            box-shadow: 0 4px 15px rgba(16, 185, 129, 0.3);
+        }
+
+        .checkout-btn:hover {
+            background: linear-gradient(135deg, #059669, #047857);
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(16, 185, 129, 0.4);
+        }
+
+        .empty-cart {
+            text-align: center;
+            padding: 60px 20px;
+            color: #9ca3af;
+            font-size: 18px;
+        }
+
+        .receipt {
+            background: white;
+            padding: 40px;
+            border-radius: 15px;
+            font-family: 'Courier New', monospace;
+        }
+
+        .receipt-header {
+            text-align: center;
+            border-bottom: 2px dashed #6b46c1;
+            padding-bottom: 25px;
+            margin-bottom: 25px;
+        }
+
+        .receipt-title {
+            font-size: 28px;
+            font-weight: bold;
+            margin-bottom: 8px;
+            color: #6b46c1;
+        }
+
+        .receipt-item {
+            display: flex;
+            justify-content: space-between;
+            padding: 10px 0;
+            border-bottom: 1px solid #f5f0fa;
+        }
+
+        .receipt-footer {
+            border-top: 2px dashed #6b46c1;
+            margin-top: 25px;
+            padding-top: 25px;
+        }
+
+        .receipt-total {
+            display: flex;
+            justify-content: space-between;
+            font-size: 22px;
+            font-weight: bold;
+            margin: 18px 0;
+            color: #6b46c1;
+        }
+
+        .receipt-thank {
+            text-align: center;
+            margin-top: 25px;
+            font-style: italic;
+            color: #7c3aed;
+        }
+
+        .print-btn {
+            width: 100%;
+            background: linear-gradient(135deg, #3b82f6, #2563eb);
+            color: white;
+            border: none;
+            padding: 16px;
+            border-radius: 12px;
+            cursor: pointer;
+            font-weight: 700;
+            font-size: 17px;
+            margin-top: 25px;
+            transition: all 0.3s;
+        }
+
+        .print-btn:hover {
+            background: linear-gradient(135deg, #2563eb, #1d4ed8);
+            transform: translateY(-2px);
+        }
+
+        @media print {
+            body * {
+                visibility: hidden;
+            }
+            .receipt, .receipt * {
+                visibility: visible;
+            }
+            .receipt {
+                position: absolute;
+                left: 0;
+                top: 0;
+            }
+            .print-btn {
+                display: none;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 38px;
+            }
+            .products-grid {
+                grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+                gap: 25px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header class="header">
+        <div class="nav-container">
+            <div class="logo">✨ DEA PARFUM</div>
+            <button class="cart-btn" onclick="toggleCart()">
+                🛍️ Keranjang
+                <span class="cart-count" id="cartCount">0</span>
+            </button>
+        </div>
+    </header>
+
+    <section class="hero">
+        <h1>Selamat Datang di Dea Parfum</h1>
+        <p>Temukan Aroma Signature Anda</p>
+    </section>
+
+    <div class="container">
+        <div class="about-section">
+            <h2>Tentang Kami</h2>
+            <p>Dea Parfum adalah destinasi parfum luxury yang didirikan pada tahun 2025 dengan visi menghadirkan pengalaman wewangian eksklusif untuk setiap individu. Kami menghadirkan koleksi parfum premium dari berbagai merek ternama dunia dengan kualitas terjamin.</p>
+            <p>Setiap botol parfum dalam koleksi kami dipilih dengan cermat oleh ahli fragrance berpengalaman. Kami percaya bahwa parfum bukan sekadar wewangian, tetapi ekspresi kepribadian dan gaya hidup yang harus dipilih dengan sempurna.</p>
+            
+            <div class="contact-info">
+                <h3>Hubungi Kami</h3>
+                <div class="contact-grid">
+                    <div class="contact-item">
+                        <div class="contact-icon">📍</div>
+                        <div class="contact-details">
+                            <strong>Alamat</strong>
+                            <p>Jl.keramat No. 123<br>Kelapa Dua, Tangerang</p>
+                        </div>
+                    </div>
+                    <div class="contact-item">
+                        <div class="contact-icon">📞</div>
+                        <div class="contact-details">
+                            <strong>Telepon</strong>
+                            <p>083879680601</p>
+                        </div>
+                    </div>
+                    <div class="contact-item">
+                        <div class="contact-icon">✉️</div>
+                        <div class="contact-details">
+                            <strong>Email</strong>
+                            <p>deaamelia3376@gmail.com</p>
+                        </div>
+                    </div>
+                    <div class="contact-item">
+                        <div class="contact-icon">⏰</div>
+                        <div class="contact-details">
+                            <strong>Jam Buka</strong>
+                            <p>Senin - Jumat: 10:00 - 21:00</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <h2 class="products-title">Koleksi Parfum Kami</h2>
+        <div class="products-grid" id="productsGrid"></div>
+    </div>
+
+    <div class="modal" id="cartModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <span>Keranjang Belanja</span>
+                <button class="close-btn" onclick="toggleCart()">×</button>
+            </div>
+            <div class="modal-body" id="cartItems"></div>
+        </div>
+    </div>
+
+    <div class="modal" id="receiptModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <span>Struk Pembelian</span>
+                <button class="close-btn" onclick="closeReceipt()">×</button>
+            </div>
+            <div class="modal-body" id="receiptContent"></div>
+        </div>
+    </div>
+
+    <script>
+        const products = [
+            { 
+                id: 1, 
+                name: 'Lavender Dreams', 
+                price: 198000, 
+                desc: 'Aroma lavender segar dengan sentuhan vanilla yang menenangkan',
+                category: 'FLORAL',
+                Image:"lavender.png"
+            },
+            { 
+                id: 2, 
+                name: 'Ocean Breeze', 
+                price: 162000, 
+                desc: 'Wewangian aquatic yang menyegarkan dengan nuansa laut',
+                category: 'AQUATIC',
+                Image:"ocean.jpg"
+            },
+            { 
+                id: 3, 
+                name: 'Rose Garden', 
+                price: 130000, 
+                desc: 'Parfum mawar klasik dengan keanggunan yang timeless',
+                category: 'FLORAL',
+                Image:"rose.jpg"
+            },
+            { 
+                id: 4, 
+                name: 'Woody Amber', 
+                price: 170000, 
+                desc: 'Kombinasi kayu cedar dan amber yang maskulin dan elegan',
+                category: 'WOODY',
+                Image:"woody.webp"
+            },
+            { 
+                id: 5, 
+                name: 'Citrus Sunshine', 
+                price: 60000, 
+                desc: 'Aroma citrus yang energik dan menyegarkan untuk hari Anda',
+                category: 'CITRUS',
+                Image:"citrus.png"
+            },
+            { 
+                id: 6, 
+                name: 'Midnight Oud', 
+                price: 100000, 
+                desc: 'Oud premium dengan sentuhan oriental yang misterius',
+                category: 'ORIENTAL',
+                Image:"midnight.jpg"
+            },
+         
+        ];
+
+        let cart = [];
+
+        function renderProducts() {
+    const grid = document.getElementById('productsGrid');
+    grid.innerHTML = products.map(product => `
+        <div class="product-card">
+            <div class="product-image">
+                ${product.Image 
+                    ? `<img src="${product.Image}" alt="${product.name}">`
+                    : `<span class="emoji-fallback">${product.emoji || '✨'}</span>`}
+            </div>
+            <div class="product-info">
+                <div class="product-category">${product.category}</div>
+                <div class="product-name">${product.name}</div>
+                <div class="product-desc">${product.desc}</div>
+                <div class="product-price">Rp ${product.price.toLocaleString('id-ID')}</div>
+                <button class="add-to-cart" onclick="addToCart(${product.id})">
+                    Tambah ke Keranjang
+                </button>
+            </div>
+        </div>
+    `).join('');
+}
+
+        function addToCart(productId) {
+            const product = products.find(p => p.id === productId);
+            const existingItem = cart.find(item => item.id === productId);
+            
+            if (existingItem) {
+                existingItem.quantity++;
+            } else {
+                cart.push({ ...product, quantity: 1 });
+            }
+            
+            updateCartCount();
+            showNotification('Produk ditambahkan ke keranjang!');
+        }
+
+        function updateCartCount() {
+            const count = cart.reduce((sum, item) => sum + item.quantity, 0);
+            document.getElementById('cartCount').textContent = count;
+        }
+
+        function toggleCart() {
+            const modal = document.getElementById('cartModal');
+            modal.classList.toggle('active');
+            if (modal.classList.contains('active')) {
+                renderCart();
+            }
+        }
+
+        function renderCart() {
+            const cartItems = document.getElementById('cartItems');
+            
+            if (cart.length === 0) {
+                cartItems.innerHTML = '<div class="empty-cart">Keranjang belanja kosong</div>';
+                return;
+            }
+
+            const total = cart.reduce((sum, item) => sum + (item.price * item.quantity), 0);
+            
+            cartItems.innerHTML = `
+                ${cart.map((item, index) => `
+                    <div class="cart-item">
+                        <div class="cart-item-info">
+                            <div class="cart-item-name">${item.name}</div>
+                            <div class="cart-item-price">Rp ${item.price.toLocaleString('id-ID')}</div>
+                        </div>
+                        <div class="quantity-controls">
+                            <button class="qty-btn" onclick="updateQuantity(${index}, -1)">-</button>
+                            <span style="font-weight: 600; color: #6b46c1;">${item.quantity}</span>
+                            <button class="qty-btn" onclick="updateQuantity(${index}, 1)">+</button>
+                        </div>
+                        <button class="remove-btn" onclick="removeFromCart(${index})">Hapus</button>
+                    </div>
+                `).join('')}
+                <div class="cart-total">
+                    <div class="total-row">
+                        <span>Total:</span>
+                        <span>Rp ${total.toLocaleString('id-ID')}</span>
+                    </div>
+                    <button class="checkout-btn" onclick="checkout()">Checkout</button>
+                </div>
+            `;
+        }
+
+        function updateQuantity(index, change) {
+            cart[index].quantity += change;
+            if (cart[index].quantity <= 0) {
+                cart.splice(index, 1);
+            }
+            updateCartCount();
+            renderCart();
+        }
+
+        function removeFromCart(index) {
+            cart.splice(index, 1);
+            updateCartCount();
+            renderCart();
+        }
+
+        function checkout() {
+            if (cart.length === 0) return;
+
+            const now = new Date();
+            const dateStr = now.toLocaleDateString('id-ID', { 
+                day: '2-digit', 
+                month: '2-digit', 
+                year: 'numeric',
+                hour: '2-digit',
+                minute: '2-digit'
+            });
+            
+            const orderNumber = 'NP-' + Date.now();
+            const total = cart.reduce((sum, item) => sum + (item.price * item.quantity), 0);
+            const tax = total * 0.11;
+            const grandTotal = total + tax;
+
+            const receiptContent = document.getElementById('receiptContent');
+            receiptContent.innerHTML = `
+                <div class="receipt">
+                    <div class="receipt-header">
+                        <div class="receipt-title">✨ DEA PARFUM</div>
+                        <div>Jl. Kopi Nikmat No. 123, Tangerang</div>
+                        <div>Telp: 083822902159</div>
+                        <div style="margin-top: 15px;">No. Order: ${orderNumber}</div>
+                        <div>${dateStr}</div>
+                    </div>
+                    
+                    <div class="receipt-items">
+                        ${cart.map(item => `
+                            <div class="receipt-item">
+                                <div>
+                                    <div><strong>${item.name}</strong></div>
+                                    <div>${item.quantity} x Rp ${item.price.toLocaleString('id-ID')}</div>
+                                </div>
+                                <div><strong>Rp ${(item.price * item.quantity).toLocaleString('id-ID')}</strong></div>
+                            </div>
+                        `).join('')}
+                    </div>
+
+                    <div class="receipt-footer">
+                        <div class="receipt-item">
+                            <span>Subtotal:</span>
+                            <span>Rp ${total.toLocaleString('id-ID')}</span>
+                        </div>
+                        <div class="receipt-item">
+                            <span>Pajak (11%):</span>
+                            <span>Rp ${tax.toLocaleString('id-ID')}</span>
+                        </div>
+                        <div class="receipt-total">
+                            <span>TOTAL:</span>
+                            <span>Rp ${grandTotal.toLocaleString('id-ID')}</span>
+                        </div>
+                        <div class="receipt-thank">
+                            Terima kasih atas pembelian Anda!<br>
+                            Semoga harum sepanjang hari ✨
+                        </div>
+                    </div>
+                    
+                    <button class="print-btn" onclick="window.print()">🖨️ Cetak Struk</button>
+                </div>
+            `;
+
+            toggleCart();
+            document.getElementById('receiptModal').classList.add('active');
+            
+            cart = [];
+            updateCartCount();
+        }
+
+        function closeReceipt() {
+            document.getElementById('receiptModal').classList.remove('active');
+        }
+
+        function showNotification(message) {
+            const notification = document.createElement('div');
+            notification.style.cssText = `
+                position: fixed;
+                top: 100px;
+                right: 20px;
+                background: linear-gradient(135deg, #8b5cf6, #7c3aed);
+                color: white;
+                padding: 18px 28px;
+                border-radius: 15px;
+                box-shadow: 0 8px 25px rgba(124, 58, 237, 0.4);
+                z-index: 3000;
+                animation: slideInRight 0.4s;
+                font-weight: 600;
+            `;
+            notification.textContent = message;
+            document.body.appendChild(notification);
+
+            setTimeout(() => {
+                notification.style.animation = 'slideOutRight 0.3s';
+                setTimeout(() => notification.remove(), 300);
+            }, 2500);
+        }
+
+        renderProducts();
+    </script>
+</body>
+</html>
